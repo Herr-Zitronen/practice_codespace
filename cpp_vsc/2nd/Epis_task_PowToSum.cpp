@@ -4,8 +4,8 @@
 
 // Functions
 
-int sumatoria_base(int base, int veces){
-    int resultado{0};
+unsigned long long int  sumatoria_base(unsigned long long int  base, int veces){
+    unsigned long long int  resultado{0};
     for (size_t i = 1; i <= veces ; ++i ){ // limit-1 cuz base != 0
         resultado += base;
         
@@ -13,9 +13,9 @@ int sumatoria_base(int base, int veces){
     return resultado;
 }
 
-void autoprocess(int base, int power, int csum){
-    std::cout << "Final the la iteración\n";
-    int temp{base};
+void autoprocess(unsigned long long int  base, int power, unsigned long long int csum){
+    std::cout << "---------------\n";
+    unsigned long long int temp{base};
     std::cout << "iteración grado 1: " << base << std::endl;
     for (size_t i = 2; i <= power; ++i){ //for n potencia: csum0+ (base + base)
         csum = sumatoria_base(temp, base); //acomulación
@@ -29,25 +29,23 @@ void autoprocess(int base, int power, int csum){
     std::cout << "the final is: " << csum;
 }
 
-void stepprocess(int base, int power, int csum){
+void stepprocess(unsigned long long int  base, int power, unsigned long long int csum){
+    std::cout << " ----------------\n";
+    unsigned long long int temp{base};
+    
+    std::cout << "iteración grado 1: " << base << std::endl;
 
-    for (size_t i = 1; i <= power ; ++i){ //for n potencia: csum0+ (base + base)
+    for (size_t i = 2; i <= power; ++i){ //for n potencia: csum0+ (base + base)
 
-        std::cout << "Número de iteración (potencia): " << i << std::endl;
-
-        std::cout << "csum = valor acomulado: " << csum << " más el valor de la base sumada el numero k veces de su valor";
-        // add a loop for add the sum times base.
-        csum += base + base; //acomulación
-        
-        std::this_thread::sleep_for(std::chrono::seconds(2));
-        
+        csum = sumatoria_base(temp, base); //acomulación
+        temp = csum;
         // print for debug
-        std::cout << csum << '\t' << base << std::endl;
 
+        std::cout << "Valor: " << csum << '\t'<< '\t' << "Base: " << base << '\t' << "Iteración: " << i << std::endl;
+        std::this_thread::sleep_for(std::chrono::seconds(2));
 
-    }   
+    }
     std::cout << "the final is: " << csum;
-
 }
 
 
@@ -55,14 +53,20 @@ void stepprocess(int base, int power, int csum){
 int main(){
     std::cout << "***** Programa: Demostración matemática de las potencias mediante adición\n";
 
-    int base {2};
-    constexpr int power {10};
+    int base {};
+    int power {};
+    std::cout << "Valor de base: ";
+    std::cin >> base;
+    std::cout << "Valor de potencia: ";
+    std::cin >> power;
+
 
     // result = 16
 
-    int csum{0};
+    unsigned long long int csum{0};
     char inp{};
-    std::cout << "Desea el proceso (y) o sólo el resultado (n)?:  ";
+    std::cout << "";
+    std::cout << "Desea el proceso (y) o sólo el resultado (n)?:";
     std::cin >> inp;
 
     switch (inp)
