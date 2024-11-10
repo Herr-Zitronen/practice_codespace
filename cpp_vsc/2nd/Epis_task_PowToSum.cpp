@@ -4,7 +4,7 @@
 
 // Functions
 
-unsigned long long int  sumatoria_base(unsigned long long int  base, int veces){
+unsigned long long int sumatoria_base(unsigned long long int  base, int veces){
     unsigned long long int  resultado{0};
     for (size_t i = 1; i <= veces ; ++i ){ // limit-1 cuz base != 0
         resultado += base;
@@ -16,10 +16,15 @@ unsigned long long int  sumatoria_base(unsigned long long int  base, int veces){
 void autoprocess(unsigned long long int  base, int power, unsigned long long int csum){
     std::cout << "---------------\n";
     unsigned long long int temp{base};
+
     std::cout << "iteración grado 1: " << base << std::endl;
+
+
     for (size_t i = 2; i <= power; ++i){ //for n potencia: csum0+ (base + base)
         csum = sumatoria_base(temp, base); //acomulación
+        
         temp = csum;
+
 
         // print for debug
         std::cout << csum << '\t' << base << std::endl;
