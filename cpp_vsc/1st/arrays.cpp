@@ -152,7 +152,33 @@ void matrix_out(){
     std::cout << matrix[1][1] << '\n';
 
 }
+void insertion_sort(){
+    int a[5]{2, 100, -23, 53, 0};
+    int key{};
+    int j{};
+    for(int element:a){
+        std::cout << element << '\t';
+    }
+    std::cout << std::endl;
 
+
+    for (int i = 1; i <= 5; ++i){
+        key = a[i];
+        j = i-1;
+
+        while (j > -1 && a[j]>key) // j < -1: secured; starting index 0.
+        {
+            a[j+1] = a[j];
+            j= j-1;
+        }
+        a[j+1] = key;
+        
+    }
+    for(int element:a){
+        std::cout << element << '\t';
+    }
+
+}
 
 //main:
 
@@ -189,6 +215,8 @@ int main(){
         case '5': Foreach_loop();
             break;
         case '6': matrix_out();
+            break;
+        case '7': insertion_sort();
             break;
         default:
             
