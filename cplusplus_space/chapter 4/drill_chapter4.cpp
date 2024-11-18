@@ -4,7 +4,7 @@ int main(){
     // variables
     int num1{};
     int num2{};
-    char ch; //use it later.
+    std::string ch; //use it later.
 
 
     while (true){
@@ -14,7 +14,7 @@ int main(){
         }else{
             std::cin.clear();
             std::cin >> ch;
-            if (ch == '|'){
+            if (ch == "|"){
                 std::cout << "Finishing the program...";
                 break;
             }else{
