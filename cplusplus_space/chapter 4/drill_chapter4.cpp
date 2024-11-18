@@ -4,16 +4,24 @@ int main(){
     // variables
     int num1{};
     int num2{};
-    char ch{}; //use it later.
+    char ch; //use it later.
 
 
     while (true){
-        
-        std::cout << "Give a number: ";
-        std::cin >> num1;
-        std::cout << "Give another: ";
-        std::cin >> num2;
-        std::cout << "The numbers were: " << num1 << num2 << std::endl;
+        std::cout << "Enter the numbers: \n";
+        if (std::cin >> num1 >> num2){
+            std::cout << "The numbers were: " << num1 << ", " << num2 << std::endl;
+        }else{
+            std::cin.clear();
+            std::cin >> ch;
+            if (ch == '|'){
+                std::cout << "Finishing the program...";
+                break;
+            }else{
+                std::cout << "Invalid.\n";
+            }
+        }
+        // neovim.
         
     }
     
