@@ -4,6 +4,9 @@ from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
 import tkinter as tk
 from tkinter import ttk
 
+# 🫠
+
+#funcion de los procesos.
 def simulate_collision():
     t = np.linspace(0, float(entry_time.get()), 1000)
     v1 = float(entry_velocity1.get())
@@ -21,24 +24,24 @@ def simulate_collision():
     # Detectar el cruce entre pos1 y pos2
     collision_indices = np.where(np.diff(np.sign(pos1 - pos2)))[0]
     if collision_indices.size > 0:
-        # Interpolar para obtener el tiempo y posición de colisión más precisos
+        # vectores de los puntos
         idx = collision_indices[0]
         t1, t2 = t[idx], t[idx + 1]
         p1_t1, p1_t2 = pos1[idx], pos1[idx + 1]
         p2_t1, p2_t2 = pos2[idx], pos2[idx + 1]
         
-        # Interpolación lineal
+        # Calculo de la colisión
         collision_time = t1 + (t2 - t1) * (p2_t1 - p1_t1) / ((p1_t2 - p1_t1) - (p2_t2 - p2_t1))
         collision_pos = p1_t1 + (collision_time - t1) * (p1_t2 - p1_t1) / (t2 - t1)
         
-        # Marcar el punto de colisión en la gráfica
+    #Marca el punto de colisión en la gráfica
         ax.plot(collision_time, collision_pos, 'ro', label='Colisión')
         ax.legend()
         ax.set_xlabel('Tiempo (s)')
         ax.set_ylabel('Posición (m)')
         ax.set_title('Simulación de colisión')
 
-        # Mostrar tiempo y posición de colisión en la terminal
+        # print collision time y pos.
         print(f"Colisión detectada en t = {collision_time:.2f} s, posición = {collision_pos:.2f} m")
     else:
         print("No se detectó ninguna colisión.")
@@ -47,9 +50,12 @@ def simulate_collision():
     canvas.draw()
     canvas.get_tk_widget().pack(side=tk.TOP, fill=tk.BOTH, expand=1)
 
-def clear_plot():
+def clear_plot(): #limpia el plot
     for widget in frame_plot.winfo_children():
         widget.destroy()
+
+
+# Manejo de GUI
 
 window = tk.Tk()
 window.title("Simulación de Colisión")
